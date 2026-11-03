@@ -1,3 +1,3 @@
 // Depois de publicar o Google Apps Script, cole aqui o endereço /exec.
 // Exemplo: window.SIMULADO_ENDPOINT = 'https://script.google.com/macros/s/SEU_ID/exec';
-window.SIMULADO_ENDPOINT = '';
+window.SIMULADO_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzvKnawLD-KB_l6VFwQRPziybBfj8-DfopjjmUFPaVzdZr1pHsufKkKqkQiJwXzsWCCug/exec';
