@@ -2,38 +2,101 @@ const $=id=>document.getElementById(id);
 let questions=[],answers=Array(32).fill(''),student={},idx=0,endAt=0,timer,submitting=false;
 const letters=['A','B','C','D','E'];
 const RESOLUCOES = [
-'M = 1500 · (1,06)² = 1500 · 1,1236 = 1.685,40.',
-'5 sabores × 3 coberturas = 15 maneiras.',
-'Somando: 4x = 12 ⇒ x = 3. De x − y = 1 ⇒ 3 − y = 1 ⇒ y = 2.',
-'x = 0,555... → 10x = 5,555... → 9x = 5 ⇒ x = 5/9.',
-'x² − 7x + 12 = 0 ⇒ (x − 3)(x − 4) = 0 ⇒ x = 3 ou x = 4.',
-'60 = 2 · 30 = 2 · 2 · 15 = 2 · 2 · 3 · 5 = 2² · 3 · 5.',
-'25% de 40 = 0,25 · 40 = 10 alunos.',
-'C = 2πr = 2 · 3,14 · 7 = 43,96 cm.',
-'V = 10 · 8 · 5 = 400 cm³.',
-'A nota 7 aparece duas vezes (mais frequente). Moda = 7.',
-'√48 = 4√3; √75 = 5√3; (4√3)·(5√3)/√3 = 20 · 3 / √3 = 60/√3 = 20√3.',
-'15% de 2000 = 300 → 1700. 10% de 1700 = 170 → 1.530.',
-'Ângulo inscrito = metade do central → 70°/2 = 35°.',
-'V = π r² h = 3,14 · 4 · 6 = 75,36 m³.',
-'Ângulos correspondentes são iguais → 110°.',
-'36x² − 25 = (6x)² − 5² = (6x − 5)(6x + 5).',
-'x² + 8x + 16 = (x + 4)².',
-'x − 2 ≥ 0 ⇒ x ≥ 2. Domínio = {x ∈ ℝ | x ≥ 2}.',
-'y = 5x − 2 é da forma ax + b (a ≠ 0).',
-'h² + 6² = 10² ⇒ h² + 36 = 100 ⇒ h² = 64 ⇒ h = 8 m.',
-'Total = 10 bolas. Vermelhas = 6. P = 6/10 = 3/5.',
-'3/5 = 6/x ⇒ 3x = 30 ⇒ x = 10 cm.',
-'y/x = 25/1 = 25; 50/2 = 25 etc. y = 25x.',
-'(x + 4)² − x² = x² + 8x + 16 − x² = 8x + 16.',
-'9² + b² = 15² ⇒ 81 + b² = 225 ⇒ b² = 144 ⇒ b = 12 cm.',
-'M = 4000 · (1,05)² = 4000 · 1,1025 = 4.410.',
-'(5x² − 2x + 3) + (3x² + 4x − 1) = 8x² + 2x + 2.',
-'Partes = 2 + 5 = 7. Cada parte = 49/7 = 7. Maior = 5 · 7 = 35.',
-'Razão 2:3. 2 partes = 8 cm → 1 parte = 4 cm. Maior = 3 · 4 = 12 cm.',
-'1 m³ = 1.000 litros → 1,2 m³ = 1.200 litros.',
-'3,84 × 10⁵ = 3,84 × 100.000 = 384.000 km.',
-'Soma = 32 + 48 + 36 + 44 = 160. Média = 160/4 = 40.'
+  // Questão 1
+  'Usamos a fórmula dos juros compostos: M = C · (1 + i)^t. Substituindo: M = 2500 · (1,04)^3 = 2500 · 1,124864 = R$ 2.812,16.',
+
+  // Questão 2
+  'Pelo princípio fundamental da contagem, multiplicamos as possibilidades de cada escolha: 4 modelos de blusa × 3 modelos de calça × 2 tipos de sapato = 24 looks diferentes.',
+
+  // Questão 3
+  'Montamos o sistema: 5c + 3d = 28 e 2c + 4d = 28, em que c representa o preço da caneta e d o preço do caderno. Da segunda equação, c = 14 − 2d. Substituindo na primeira: 5(14 − 2d) + 3d = 28 → 70 − 10d + 3d = 28 → −7d = −42 → d = 6. Assim, c = 14 − 12 = 2. A caneta custa R$ 2,00 e o caderno R$ 6,00.',
+
+  // Questão 4
+  'Seja x = 0,666... Multiplicando por 10: 10x = 6,666... Subtraindo a primeira igualdade da segunda: 9x = 6. Portanto, x = 6/9 = 2/3.',
+
+  // Questão 5
+  'Se a largura é x, o comprimento é 2x + 4. Como a área é 48 m²: x(2x + 4) = 48 → 2x² + 4x − 48 = 0. Dividindo por 2: x² + 2x − 24 = 0 → (x + 6)(x − 4) = 0. Como a medida deve ser positiva, x = 4. O comprimento é 2 · 4 + 4 = 12 m.',
+
+  // Questão 6
+  'Decompondo 84 em fatores primos: 84 = 2 · 42 = 2 · 2 · 21 = 2² · 3 · 7.',
+
+  // Questão 7
+  'Calculamos 35% de 200: 0,35 · 200 = 70 jovens.',
+
+  // Questão 8
+  'O comprimento da circunferência é C = 2πr. Substituindo π = 22/7 e r = 35: C = 2 · (22/7) · 35 = 220 m.',
+
+  // Questão 9
+  'Calculamos o volume: V = 40 · 30 · 25 = 30.000 cm³. Como 1 litro corresponde a 1.000 cm³, temos 30.000 ÷ 1.000 = 30 litros.',
+
+  // Questão 10
+  'Organizando as idades em ordem crescente: 14, 14, 14, 15, 15, 16, 17. A moda é 14, pois aparece três vezes. A mediana é 15, pois ocupa a posição central (4ª posição) dos sete valores.',
+
+  // Questão 11
+  'Simplificamos os radicais: √50 = 5√2 e √32 = 4√2. Então: (5√2 · 4√2) ÷ √2 = 20 · 2 ÷ √2 = 40/√2. Racionalizando: 40√2/2 = 20√2.',
+
+  // Questão 12
+  'Primeiro, calculamos o desconto de 20%: 1.800 · 0,80 = R$ 1.440,00. Depois, aplicamos 15% de desconto sobre esse novo valor: 1.440 · 0,85 = R$ 1.224,00.',
+
+  // Questão 13
+  'O ângulo inscrito mede a metade do ângulo central que determina o mesmo arco. Assim: 96° ÷ 2 = 48°.',
+
+  // Questão 14
+  'O volume do cilindro é V = πr²h. Substituindo: V = 3,14 · (1,5)² · 4 = 3,14 · 2,25 · 4 = 28,26 m³.',
+
+  // Questão 15
+  'Quando duas retas paralelas são cortadas por uma transversal, os ângulos correspondentes possuem a mesma medida. Portanto, o ângulo correspondente também mede 125°.',
+
+  // Questão 16
+  'Reconhecemos uma diferença de dois quadrados: 81x² − 49 = (9x)² − 7². Aplicando a identidade a² − b² = (a − b)(a + b), obtemos (9x − 7)(9x + 7).',
+
+  // Questão 17
+  'A expressão x² + 10x + 25 é um trinômio quadrado perfeito. Como 25 = 5² e 10x = 2 · x · 5, podemos escrever: x² + 10x + 25 = (x + 5)².',
+
+  // Questão 18
+  'Para que a raiz quadrada tenha resultado real, o radicando deve ser maior ou igual a zero: h − 5t ≥ 0. Assim, −5t ≥ −h. Dividindo por −5 e invertendo o sinal: t ≤ h/5. Como t representa tempo, também consideramos t ≥ 0. Portanto, o domínio é 0 ≤ t ≤ h/5.',
+
+  // Questão 19
+  'O valor da corrida é formado por uma parte fixa de R$ 6,00 (bandeirada) e uma parte variável de R$ 2,80 por quilômetro. Logo, a função é V = 2,80d + 6.',
+
+  // Questão 20
+  'Aplicamos o Teorema de Pitágoras. A escada é a hipotenusa: h² + 8² = 17² → h² + 64 = 289 → h² = 225. Portanto, h = √225 = 15 m.',
+
+  // Questão 21
+  'Os números ímpares de 1 a 7 são 1, 3, 5 e 7. São 4 resultados favoráveis entre 7 possibilidades. Assim, P = 4/7.',
+
+  // Questão 22
+  'Pelo Teorema de Tales, os segmentos correspondentes são proporcionais: 6/9 = 12/x. Multiplicando em cruz: 6x = 108. Portanto, x = 18 cm.',
+
+  // Questão 23
+  'Observando a tabela, quando a quantidade aumenta de 5 peças, o custo aumenta R$ 50,00. Logo, cada peça acrescenta R$ 10,00 ao custo. A expressão é y = 10x + b. Usando o primeiro par (5, 80): 80 = 10 · 5 + b → b = 30. Portanto, y = 10x + 30.',
+
+  // Questão 24
+  'Desenvolvemos o quadrado da soma: (x + 6)² = x² + 12x + 36. Subtraindo x²: x² + 12x + 36 − x² = 12x + 36.',
+
+  // Questão 25
+  'Aplicamos o Teorema de Pitágoras: 15² + x² = 25² → 225 + x² = 625 → x² = 400. Portanto, x = √400 = 20 cm.',
+
+  // Questão 26
+  'Usamos a fórmula dos juros compostos: M = C · (1 + i)^t. Substituindo: M = 5000 · (1,03)² = 5000 · 1,0609 = R$ 5.304,50.',
+
+  // Questão 27
+  'Distribuímos o sinal negativo nos termos do segundo parêntese: 4x² − 5x + 7 − 2x² − 3x + 4. Agora agrupamos os termos semelhantes: (4x² − 2x²) + (−5x − 3x) + (7 + 4) = 2x² − 8x + 11.',
+
+  // Questão 28
+  'Somamos as partes da razão: 2 + 3 + 5 = 10 partes. Cada parte vale 1.200 ÷ 10 = R$ 120,00. O irmão que recebe a maior parte fica com 5 partes: 5 · 120 = R$ 600,00.',
+
+  // Questão 29
+  'A razão entre os lados do menor e do maior é 3/5. Como os triângulos são semelhantes, seus perímetros seguem a mesma razão: 36/ P = 3/5. Multiplicando em cruz: 3P = 180. Portanto, P = 60 cm.',
+
+  // Questão 30
+  'Sabemos que 1 m³ corresponde a 1.000 litros. Assim: 45 · 1.000 = 45.000 litros.',
+
+  // Questão 31
+  'A potência 10¹¹ indica que devemos deslocar a vírgula 11 casas para a direita: 1,5 × 100.000.000.000 = 150.000.000.000 metros.',
+
+  // Questão 32
+  'Somamos os livros emprestados nas quatro semanas: 48 + 62 + 55 + 71 = 236. Para calcular a média, dividimos pelo número de semanas: 236 ÷ 4 = 59 livros.'
 ];
 fetch('questoes.json').then(r=>{if(!r.ok)throw Error('Falha');return r.json()})
 .then(q=>{questions=q;if(questions.length!==32)throw Error('Quantidade de questões inválida')})
