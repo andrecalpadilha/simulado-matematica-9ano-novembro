@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simulado Matemática | 9º Ano</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f0f4fa;color:#163152;font:16px system-ui,Arial}
+.top{background:#12345d;color:white;padding:22px max(20px,calc((100% - 950px)/2))}
+.top h1{margin:6px 0}.top small{color:#cbdff9}.wrap{max-width:950px;margin:28px auto;padding:0 18px}
+.card{background:white;border:1px solid #dce5f0;border-radius:16px;padding:28px;box-shadow:0 8px 30px #16315213}
+.hidden{display:none!important}.muted{color:#60738a}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.clock{font-weight:800;color:#b42b42}label.field{display:block;font-weight:700;margin:15px 0 6px}
+input.field,select{width:100%;padding:12px;border:1px solid #cad7e6;border-radius:9px;font:inherit}
+.btn{background:#1c62b1;border:0;color:white;border-radius:9px;padding:12px 17px;cursor:pointer;font:inherit;font-weight:700}
+.btn:disabled{opacity:.5}.sub{background:#e8eff8;color:#244c78}.nav{display:flex;justify-content:space-between;gap:9px;flex-wrap:wrap;margin-top:23px}
+.meter{height:9px;background:#e6edf5;border-radius:20px;overflow:hidden;margin:12px 0}.meter div{height:100%;background:#2471c8}
+.numbers{display:flex;flex-wrap:wrap;gap:7px;margin:15px 0}.numbers button{border:1px solid #cedae8;background:white;border-radius:7px;padding:8px;min-width:38px;cursor:pointer}
+.numbers .active{outline:2px solid #2367b7}.numbers .answered{background:#d9f1e4}
+.qtext{font-size:1.2rem;line-height:1.6;margin:18px 0;white-space:pre-wrap}
+.choice{display:flex;gap:12px;align-items:center;border:1px solid #d5e0ed;padding:14px;border-radius:10px;margin:9px 0;cursor:pointer}
+.choice:has(input:checked){background:#e6f1ff;border-color:#2a70bc}
+.hint{background:#fff5d4;color:#72500e;border:1px solid #e9c768;margin:12px 0;border-radius:9px;padding:10px 14px;cursor:pointer;font:inherit;font-weight:700}
+.hintbox{background:#fff9e9;border-left:4px solid #e9bb3d;padding:13px;margin:8px 0 16px;line-height:1.5}
+.qt{border-collapse:collapse;max-width:600px;width:100%;margin:15px 0}.qt td{border:1px solid #d1dbea;text-align:center;padding:10px}
+.notice{padding:13px;background:#f0f6fd;border-radius:9px;margin:15px 0}
+footer{text-align:center;color:#718198;padding:18px}#status{color:#a42a3b;font-weight:600}
+.review{padding:13px;border:1px solid #dce5f0;border-radius:10px;margin:10px 0}
+.good{border-left:5px solid #23965b}.bad{border-left:5px solid #c64a4a}
+.review small{color:#60738a}.review p{margin:7px 0}
+@media(max-width:600px){.card{padding:18px}.top{padding:18px}.row{align-items:flex-start;flex-direction:column}.nav .btn{flex:1}}
+</style>
+</head>
+<body>
+<header class="top"><small>CE 208 · SESI LEME</small><h1>Simulado de Matemática — 9º Ano</h1><small>32 questões · 5 alternativas · 2h30</small></header>
+<main class="wrap">
+<section class="card" id="start">
+<h2>Identificação do aluno</h2><p class="muted">Preencha seus dados para iniciar. Não utilize calculadora.</p>
+<form id="form">
+<label class="field" for="nome">Nome completo</label><input class="field" id="nome" minlength="3" maxlength="120" required>
+<label class="field" for="numero">Número de chamada</label><input class="field" id="numero" type="number" min="1" max="60" required>
+<label class="field" for="turma">Turma</label><select id="turma" required><option value="">Selecione</option><option>9º A</option><option>9º B</option></select>
+<div class="notice">Ao iniciar, o cronômetro de 2h30 começará. Suas respostas serão corrigidas ao finalizar.</div>
+<button class="btn">Iniciar simulado</button></form></section>
+<section id="exam" class="card hidden">
+<div class="row"><strong id="who"></strong><span class="clock" id="clock">02:30:00</span></div>
+<p id="progress" class="muted"></p><div class="meter"><div id="bar"></div></div><div class="numbers" id="numbers"></div>
+<hr style="border:0;border-top:1px solid #e3eaf2;margin:23px 0">
+<h2 id="qn"></h2><p class="muted" id="tipo"></p><div class="qtext" id="qtext"></div><div id="qtable"></div>
+<button class="hint" type="button" id="hintbtn" aria-expanded="false">💡 Ver dica</button><div class="hintbox hidden" id="hintbox"></div>
+<div id="choices"></div><div class="nav"><button class="btn sub" id="prev">Anterior</button><button class="btn sub" id="next">Próxima</button><button class="btn" id="finish">Finalizar e enviar</button></div><p id="status" role="status"></p>
+</section>
+<section id="done" class="card hidden"><h2>Simulado finalizado!</h2><div class="notice" id="result"></div><p class="muted" id="receipt"></p><h3>Correção das questões</h3><div id="details"></div></section>
+</main><footer>Simulado escolar · Matemática · 9º Ano</footer>
+<script src="config.js"></script><script src="dicas.js"></script><script src="app.js"></script>
+</body></html>

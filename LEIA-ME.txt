@@ -1,0 +1,40 @@
+SIMULADO DE MATEMÁTICA – 9º ANO (VERSÃO 2)
+CE 208 · SESI LEME
+
+ARQUIVOS
+- index.html: página e layout.
+- app.js: navegação, cronômetro, dicas, correção e envio.
+- questoes.json: as 32 questões do documento fornecido.
+- dicas.js: uma dica para cada questão.
+- config.js: endereço obrigatório do Apps Script para iniciar o simulado e registrar as respostas.
+- Codigo_Apps_Script.gs: código para receber respostas e registrar em uma planilha Google.
+
+PUBLICAR EM UM NOVO ENDEREÇO (SEM ALTERAR O SITE ANTIGO)
+1. Entre no GitHub e crie um repositório NOVO, por exemplo: simulado-matematica-9ano-novembro.
+2. Não altere nem envie arquivos para o repositório simulado-matematica-9ano (o antigo).
+3. No repositório novo, envie todos os arquivos deste pacote para a raiz (não envie o ZIP; extraia-o primeiro).
+4. Abra Settings > Pages.
+5. Em Build and deployment, escolha Deploy from a branch.
+6. Selecione a branch main e a pasta /(root), e salve.
+7. O endereço será semelhante a:
+   https://andrecalpadilha.github.io/simulado-matematica-9ano-novembro/
+
+REGISTRO DAS RESPOSTAS EM PLANILHA (RECOMENDADO)
+O simulado exige a configuração do Apps Script para iniciar, corrigir e guardar as respostas. Isso mantém o gabarito fora dos arquivos públicos do site. Para configurar:
+1. Crie uma nova planilha Google para este simulado.
+2. Na planilha, abra Extensões > Apps Script.
+3. Apague o conteúdo inicial e cole o conteúdo de Codigo_Apps_Script.gs.
+4. Salve o projeto.
+5. Clique em Implantar > Nova implantação > Aplicativo da Web.
+6. Executar como: você. Quem pode acessar: qualquer pessoa.
+7. Clique em Implantar e autorize as permissões solicitadas.
+8. Copie o URL do aplicativo da Web que termina em /exec.
+9. Abra config.js e substitua a linha window.SIMULADO_ENDPOINT = ''; pelo endereço copiado, entre aspas.
+10. Salve e envie o config.js atualizado ao repositório novo.
+
+IMPORTANTE
+- O Apps Script deste pacote usa uma aba separada chamada “Respostas - Simulado 2” e um gabarito próprio para estas 32 questões.
+- Não reutilize o endereço /exec do simulado antigo: o gabarito do endpoint antigo é diferente.
+- O site antigo permanece intacto se você criar e publicar um repositório novo.
+- O simulado não inicia enquanto o endereço do Apps Script não estiver configurado. O gabarito fica no Apps Script, não no JavaScript público do site.
+- Confira a lista de turmas em index.html e Codigo_Apps_Script.gs se precisar incluir outras turmas.
