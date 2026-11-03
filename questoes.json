@@ -209,7 +209,7 @@
     "enunciado": "A função que modela a altura de um objeto em queda livre a partir de certa altura é do tipo f(t) = √(h − 5t), em que t é o tempo. O domínio dessa função, considerando apenas valores reais possíveis, é:",
     "alternativas": [
       "{t ∈ ℝ | t ≥ 0}",
-      "{t ∈ ℝ | t ≤ h/5}",
+      "{t ∈ ℝ | 0 ≤ t ≤ h/5}",
       "{t ∈ ℝ | t ≥ h/5}",
       "{t ∈ ℝ | t ≠ h/5}",
       "{t ∈ ℝ | t > 0}"
