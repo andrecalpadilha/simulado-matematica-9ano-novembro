@@ -26,7 +26,7 @@
   {
     "n": 3,
     "tipo": "Conexão",
-    "enunciado": "Dois amigos compraram juntos 5 canetas e 3 cadernos por R$ 28,00. Em outra loja, 2 canetas e 4 cadernos custaram R$ 24,00. O preço de uma caneta e de um caderno, respectivamente, é:",
+    "enunciado": "Dois amigos compraram juntos 5 canetas e 3 cadernos por R$ 28,00. Em outra loja, 2 canetas e 4 cadernos custaram R$ 28,00. O preço de uma caneta e de um caderno, respectivamente, é:",
     "alternativas": [
       "R$ 2,00 e R$ 6,00",
       "R$ 4,00 e R$ 4,00",
