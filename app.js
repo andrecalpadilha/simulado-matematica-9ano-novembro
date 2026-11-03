@@ -9,7 +9,6 @@ fetch('questoes.json').then(r=>{if(!r.ok)throw Error('Falha');return r.json()})
 $('form').addEventListener('submit',e=>{
  e.preventDefault();
  if(questions.length!==32){alert('As questões ainda não foram carregadas. Aguarde alguns segundos e tente novamente.');return}
- if(!window.SIMULADO_ENDPOINT){alert('O professor ainda precisa configurar o registro de respostas no arquivo config.js.');return}
  student={nome:$('nome').value.trim(),numero:$('numero').value,turma:$('turma').value};
  endAt=Date.now()+9000000;
  $('start').classList.add('hidden');$('exam').classList.remove('hidden');
