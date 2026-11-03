@@ -1,7 +1,40 @@
 const $=id=>document.getElementById(id);
 let questions=[],answers=Array(32).fill(''),student={},idx=0,endAt=0,timer,submitting=false;
 const letters=['A','B','C','D','E'];
-
+const RESOLUCOES = [
+'M = 1500 · (1,06)² = 1500 · 1,1236 = 1.685,40.',
+'5 sabores × 3 coberturas = 15 maneiras.',
+'Somando: 4x = 12 ⇒ x = 3. De x − y = 1 ⇒ 3 − y = 1 ⇒ y = 2.',
+'x = 0,555... → 10x = 5,555... → 9x = 5 ⇒ x = 5/9.',
+'x² − 7x + 12 = 0 ⇒ (x − 3)(x − 4) = 0 ⇒ x = 3 ou x = 4.',
+'60 = 2 · 30 = 2 · 2 · 15 = 2 · 2 · 3 · 5 = 2² · 3 · 5.',
+'25% de 40 = 0,25 · 40 = 10 alunos.',
+'C = 2πr = 2 · 3,14 · 7 = 43,96 cm.',
+'V = 10 · 8 · 5 = 400 cm³.',
+'A nota 7 aparece duas vezes (mais frequente). Moda = 7.',
+'√48 = 4√3; √75 = 5√3; (4√3)·(5√3)/√3 = 20 · 3 / √3 = 60/√3 = 20√3.',
+'15% de 2000 = 300 → 1700. 10% de 1700 = 170 → 1.530.',
+'Ângulo inscrito = metade do central → 70°/2 = 35°.',
+'V = π r² h = 3,14 · 4 · 6 = 75,36 m³.',
+'Ângulos correspondentes são iguais → 110°.',
+'36x² − 25 = (6x)² − 5² = (6x − 5)(6x + 5).',
+'x² + 8x + 16 = (x + 4)².',
+'x − 2 ≥ 0 ⇒ x ≥ 2. Domínio = {x ∈ ℝ | x ≥ 2}.',
+'y = 5x − 2 é da forma ax + b (a ≠ 0).',
+'h² + 6² = 10² ⇒ h² + 36 = 100 ⇒ h² = 64 ⇒ h = 8 m.',
+'Total = 10 bolas. Vermelhas = 6. P = 6/10 = 3/5.',
+'3/5 = 6/x ⇒ 3x = 30 ⇒ x = 10 cm.',
+'y/x = 25/1 = 25; 50/2 = 25 etc. y = 25x.',
+'(x + 4)² − x² = x² + 8x + 16 − x² = 8x + 16.',
+'9² + b² = 15² ⇒ 81 + b² = 225 ⇒ b² = 144 ⇒ b = 12 cm.',
+'M = 4000 · (1,05)² = 4000 · 1,1025 = 4.410.',
+'(5x² − 2x + 3) + (3x² + 4x − 1) = 8x² + 2x + 2.',
+'Partes = 2 + 5 = 7. Cada parte = 49/7 = 7. Maior = 5 · 7 = 35.',
+'Razão 2:3. 2 partes = 8 cm → 1 parte = 4 cm. Maior = 3 · 4 = 12 cm.',
+'1 m³ = 1.000 litros → 1,2 m³ = 1.200 litros.',
+'3,84 × 10⁵ = 3,84 × 100.000 = 384.000 km.',
+'Soma = 32 + 48 + 36 + 44 = 160. Média = 160/4 = 40.'
+];
 fetch('questoes.json').then(r=>{if(!r.ok)throw Error('Falha');return r.json()})
 .then(q=>{questions=q;if(questions.length!==32)throw Error('Quantidade de questões inválida')})
 .catch(()=>{$('start').innerHTML='<h2>Erro ao carregar questões</h2><p>Atualize a página ou confira se todos os arquivos foram publicados no GitHub Pages.</p>'});
@@ -50,16 +83,44 @@ async function submit(expired){
  }
 }
 function showResults(hits,grade,protocol,gabarito){
- $('exam').classList.add('hidden');$('done').classList.remove('hidden');
+ $('exam').classList.add('hidden');
+ $('done').classList.remove('hidden');
+
  $('result').textContent='Você acertou '+hits+' de 32 questões. Sua nota: '+grade.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+' / 10,00.';
  $('receipt').textContent='Aluno: '+student.nome+' · '+student.turma+' · '+protocol;
- const details=$('details');details.replaceChildren();
+
+ const details=$('details');
+ details.replaceChildren();
+
  questions.forEach((q,i)=>{
-  const correct=gabarito[i],marked=answers[i],box=document.createElement('div');box.className='review '+(marked===correct?'good':'bad');
-  const title=document.createElement('strong');title.textContent='Questão '+q.n+' — '+(marked===correct?'Correta':'Incorreta');
-  const p=document.createElement('p');p.textContent='Sua resposta: '+(marked||'Não respondida')+' · Gabarito: '+correct;
-  const skill=document.createElement('small');skill.textContent=q.tipo;
-  box.append(title,p,skill);details.append(box);
+  const correct=gabarito[i];
+  const marked=answers[i];
+
+  const box=document.createElement('div');
+  box.className='review '+(marked===correct?'good':'bad');
+
+  const title=document.createElement('strong');
+  title.textContent='Questão '+q.n+' — '+(marked===correct?'Correta':'Incorreta');
+
+  const p=document.createElement('p');
+  p.textContent='Sua resposta: '+(marked||'Não respondida')+' · Gabarito: '+correct;
+
+  const skill=document.createElement('small');
+  skill.textContent=q.tipo;
+
+  const resolution=document.createElement('details');
+  resolution.className='resolution';
+
+  const summary=document.createElement('summary');
+  summary.textContent='📘 Ver resolução';
+
+  const explanation=document.createElement('p');
+  explanation.textContent=RESOLUCOES[i] || 'Resolução não disponível.';
+
+  resolution.append(summary,explanation);
+  box.append(title,p,skill,resolution);
+  details.append(box);
  });
+
  window.scrollTo({top:0,behavior:'smooth'});
 }
